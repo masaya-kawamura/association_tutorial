@@ -1,0 +1,13 @@
+<p><span>email：</span><%= @user.email %></p>
+<p><span>ツイート内容：</span><%= @tweet.body %></p>
+
+ <% if @tweet.favorited_by?(current_user) %>
+   <p><span>お気に入り解除：</span><%= link_to @tweet.favorites.count, tweet_favorites_path(@tweet.id), method: :delete %></p>
+ <% else %>
+   <p><span>お気に入り登録：</span><%= link_to @tweet.favorites.count, tweet_favorites_path(@tweet.id), method: :post %></p>
+ <% end %>
+
+ <h2>いいねしたユーザー一覧</h2>
+ <% @favorite_users.each do |user| %>
+ <p><span>ファボったユーザー：</span><%= user.email %></p>
+ <% end %>
