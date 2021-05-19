@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :tweets
-  has_many :favorites
-  has_many :comments
+  has_many :tweets,    dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :comments,  dependent: :destroy
   # ユーザーがいいねした投稿一覧を取得するための関連付け
   has_many :favorite_tweets, through: :favorites, source: :tweet
   # ユーザーがコメントした投稿の情報を取得する関連付け

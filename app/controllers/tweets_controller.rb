@@ -20,6 +20,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @user = @tweet.user
     @favorite_users = @tweet.favorite_users
+    @comment = Comment.new
   end
 
 

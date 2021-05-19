@@ -14,3 +14,10 @@
  <hr>
  <p><span>ファボツイート内容：</span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
 <% end %>
+
+<br/>
+<h2><%= @user.email %>がコメントした投稿</h2>
+<% @comment_tweets.each do |tweet| %>
+  <hr>
+  <p><span>コメントした投稿内容：</span><%= link_to tweet.body, tweet_path(tweet.id) %></p>
+<% end %>

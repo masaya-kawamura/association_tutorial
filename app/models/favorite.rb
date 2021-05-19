@@ -1,6 +1,6 @@
 class Favorite < ApplicationRecord
   
-  belongs_to :user,   dependent: :destroy
-  belongs_to :tweet , dependent: :destroy
+  belongs_to :user
+  belongs_to :tweet
   
 end

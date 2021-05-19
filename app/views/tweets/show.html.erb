@@ -1,4 +1,4 @@
-<p><span>email：</span><%= @user.email %></p>
+<p><span>email：</span><%= link_to @user.email, user_path(@user) %></p>
 <p><span>ツイート内容：</span><%= @tweet.body %></p>
 
  <% if @tweet.favorited_by?(current_user) %>
@@ -9,5 +9,19 @@
 
  <h2>いいねしたユーザー一覧</h2>
  <% @favorite_users.each do |user| %>
- <p><span>ファボったユーザー：</span><%= user.email %></p>
+ <p><span>ファボったユーザー：</span><%= link_to user.email, user_path(user) %></p>
+ <% end %>
+
+ <h2>コメント一覧</h2>
+ <% @tweet.comments.each do |comment| %>
+  <hr>
+  <p><span>コメントしたユーザー：</span><%= link_to comment.user.email, user_path(comment.user) %></p>
+  <p><span>コメント本文：</span><%= comment.body %></p>
+  <%= link_to "削除", tweet_comment_path(comment.tweet, comment), method: :delete %>
+ <% end %>
+
+ <h2>新たにコメントする</h2>
+ <%= form_with(model:[@tweet, @comment], local: true) do |f| %>
+  <%=f.text_area :body, rows:'5', placeholder: "コメントここに" %><br/>
+  <%= f.submit "送信する" %>
  <% end %>
